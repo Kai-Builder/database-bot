@@ -577,4 +577,4 @@ async def on_reaction_add(self, reaction, user):
                 )
 
 
-client.run("ODAyMTg5NzQ4MTIyNjgxMzU2.YArnaw.WvwS4twsA1ndvrY_iM-y0hiy9DY")
+client.run("")
