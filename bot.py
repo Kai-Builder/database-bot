@@ -14,7 +14,7 @@ import asyncio
 import youtube_dl as ytdl
 from discord.utils import find, get
 from pathlib import Path
-
+loggedinusers = []
 client = commands.Bot(command_prefix="p:")
 
 
@@ -497,7 +497,7 @@ class Video:
 
 
 @client.command(brief="Plays audio from <url>.")
-async def play(self, ctx, *, url):
+async def play(ctx, *, url):
     """Plays audio hosted at <url> (or performs a search for <url> and plays the first result)."""
 
     clients = client.guild.voice_client
@@ -576,5 +576,64 @@ async def on_reaction_add(self, reaction, user):
                     f"{user.mention} voted to skip ({len(state.skip_votes)}/{required_votes} votes)"
                 )
 
+@client.command()
+async def form(ctx, header, description, footers, fieldnames, color=None, **fields):
+    print("form Called")
+    f = await ctx.send("Formatting Your Message")
+    await asyncio.sleep(2)
+    await f.edit(content="Almost Done...")
+    await asyncio.sleep(1)
+    await f.edit(content="Resolving Objects. . .")
+    await asyncio.sleep(1)
+    await f.edit(content="Done!")
+    embed = discord.Embed(title=header, description=description)
+    embed.set_footer(text=footers)
+    for word in fields:
+        x = 0
+        embed.add_field(name=f"{fieldnames}",
+                        value=fields[x + 1])
+    await ctx.send(embed=embed)
 
-client.run("")
+@client.command()
+async def Find(ctx, user: discord.Member):
+    print(" Called")
+    lo = await ctx.send("Getting User Info. . |")
+    await asyncio.sleep(0.01)
+    await lo.edit(content="Getting User Info. . /")
+    await asyncio.sleep(0.01)
+    await lo.edit(content="Getting User Info. . -")
+    await asyncio.sleep(0.01)
+    await lo.edit(content="Getting User Info. . \\")
+    await asyncio.sleep(0.01)
+    await lo.edit(content="Getting User Info. . |")
+    await asyncio.sleep(0.01)
+    await lo.edit(content="Getting User Info. . /")
+    await asyncio.sleep(0.01)
+    await lo.edit(content="Getting User Info. . -")
+    await asyncio.sleep(0.01)
+    await lo.edit(content="Getting User Info. . /")
+    await asyncio.sleep(0.01)
+    await lo.edit(content="Getting User Info. . -")
+    await asyncio.sleep(0.01)
+    await lo.edit(content="Getting User Info. . \\")
+    await asyncio.sleep(0.01)
+    await lo.edit(content="Getting User Info. . |")
+    await lo.edit(content="Found User Info!")
+    embed = discord.Embed(title=f"User {user}", description="USER!")
+    embed.add_field(name="Date Joined?",
+                    value=str(user.joined_at))
+    embed.add_field(name="On Mobile?",
+                    value=str(user.is_on_mobile()))
+    embed.add_field(name="Nitro Since?",
+                    value=str(user.premium_since))
+    embed.add_field(name="Server?", value=str(user.guild))
+    embed.add_field(name="Extras",
+                    value=f"NName: {user.nick}\nReal: {user.display_name}\nStatus? : {user.status}")
+    await ctx.send(embed=embed)
+    await ctx.send(f"")
+
+@client.command()
+async def code(ctx):
+    print("code Called")
+    await ctx.send("Source Code At https://github.com/Kai-Builder/database-bot/ !")
+client.run("**you**")
