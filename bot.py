@@ -438,4 +438,4 @@ async def on_message(message):
 async def check(ctx, arg):
     if isinstance(ctx.channel, discord.channel.DMChannel):
         await ctx.send(arg)
-client.run("ODAyMTg5NzQ4MTIyNjgxMzU2.YArnaw.M8K_kLBNmw6cUc3sI6saAUQIosY")
+client.run("TOKEN")
